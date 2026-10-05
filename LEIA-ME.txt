@@ -1,0 +1,222 @@
+# SISTEMA DE BIBLIOTECA — PILHA E FILA
+
+## 1. Integrantes
+
+* Rayane Gabrielle Castro Cardoso
+* Raquel de Jesus Teixeira
+* Taynná das Neves Viera
+
+---
+
+## 2. Descrição do projeto
+
+O projeto consiste em um sistema simples de biblioteca desenvolvido em linguagem C, utilizando estruturas de dados dinâmicas implementadas com ponteiros.
+
+O sistema utiliza uma **fila** para representar as pessoas que aguardam atendimento na biblioteca e uma **pilha** para representar os livros organizados em uma pilha de livros.
+
+### Fila
+
+A fila utiliza o princípio **FIFO (First In, First Out)**, ou seja, a primeira pessoa que entra na fila é a primeira a ser atendida.
+
+Exemplo:
+
+```text
+[Maria] → [João] → [Ana]
+   ↑                  ↑
+ início              fim
+```
+
+Se Maria entrou primeiro, ela será a primeira pessoa atendida.
+
+### Pilha
+
+A pilha utiliza o princípio **LIFO (Last In, First Out)**, ou seja, o último livro colocado na pilha é o primeiro livro que pode ser retirado.
+
+Exemplo:
+
+```text
+[Livro 3] ← topo
+[Livro 2]
+[Livro 1]
+```
+
+Nesse caso, o Livro 3 é o primeiro que será retirado.
+
+---
+
+## 3. Funcionalidades
+
+### Fila de pessoas
+
+* Inicializar a fila;
+* Verificar se a fila está vazia;
+* Colocar uma pessoa na fila;
+* Consultar a próxima pessoa sem removê-la;
+* Atender e remover a primeira pessoa;
+* Mostrar todas as pessoas da fila;
+* Liberar a memória utilizada pela fila.
+
+### Pilha de livros
+
+* Inicializar a pilha;
+* Verificar se a pilha está vazia;
+* Colocar um livro no topo;
+* Consultar o livro do topo sem removê-lo;
+* Retirar o livro do topo;
+* Mostrar os livros da pilha;
+* Liberar a memória utilizada pela pilha.
+
+---
+
+## 4. Organização dos arquivos
+
+O projeto foi dividido em arquivos para separar as responsabilidades:
+
+```text
+biblioteca-pilha-fila/
+│
+├── main.c
+├── fila.c
+├── fila.h
+├── pilha.c
+├── pilha.h
+└── LEIA-ME.txt
+```
+
+* `main.c` — contém o menu e a interação com o usuário.
+* `fila.h` — contém as estruturas e declarações das funções da fila.
+* `fila.c` — contém a implementação das funções da fila.
+* `pilha.h` — contém as estruturas e declarações das funções da pilha.
+* `pilha.c` — contém a implementação das funções da pilha.
+* `LEIA-ME.txt` — contém as informações e instruções do projeto.
+
+---
+
+## 5. Compilação
+
+No terminal, dentro da pasta do projeto, execute:
+
+```bash
+cc -Wall -Wextra main.c fila.c pilha.c -o biblioteca
+```
+
+---
+
+## 6. Execução
+
+Depois da compilação:
+
+```bash
+./biblioteca
+```
+
+---
+
+## 7. Exemplo de uso
+
+Ao executar o programa, será apresentado um menu com opções para trabalhar com a fila e com a pilha.
+
+Exemplo de utilização da fila:
+
+```text
+1 - Colocar pessoa na fila
+Nome: Maria
+
+1 - Colocar pessoa na fila
+Nome: João
+
+1 - Colocar pessoa na fila
+Nome: Ana
+
+4 - Mostrar fila
+```
+
+Resultado:
+
+```text
+--- FILA DE ATENDIMENTO ---
+Maria
+João
+Ana
+```
+
+Ao utilizar a opção de consultar a próxima pessoa:
+
+```text
+3 - Consultar proxima pessoa
+
+Proxima pessoa: Maria
+```
+
+A consulta não remove Maria da fila.
+
+Se a opção de atendimento for utilizada:
+
+```text
+2 - Atender proxima pessoa
+
+Maria foi atendido e saiu da fila.
+```
+
+A fila passa a ser:
+
+```text
+João → Ana
+```
+
+Exemplo de utilização da pilha:
+
+```text
+5 - Colocar livro na pilha
+Livro: Estrutura de Dados
+
+5 - Colocar livro na pilha
+Livro: Algoritmos
+
+5 - Colocar livro na pilha
+Livro: Linguagem C
+```
+
+A pilha ficará:
+
+```text
+Linguagem C ← topo
+Algoritmos
+Estrutura de Dados
+```
+
+Ao retirar um livro:
+
+```text
+6 - Retirar livro da pilha
+
+Livro "Linguagem C" foi retirado da pilha.
+```
+
+O próximo livro no topo será:
+
+```text
+Algoritmos ← topo
+Estrutura de Dados
+```
+
+---
+
+## 8. Estruturas utilizadas
+
+As estruturas são implementadas com **nós alocados dinamicamente**, utilizando ponteiros.
+
+A fila possui:
+
+```text
+inicio
+fim
+```
+
+A pilha possui:
+
+```text
+topo
+```
+
+Os nós removidos são liberados com `free()` e, ao encerrar o programa, os nós que ainda estiverem nas estruturas também são liberados.
